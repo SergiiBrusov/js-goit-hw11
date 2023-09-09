@@ -1,0 +1,51 @@
+.is-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+.gallery{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-left: 14px;
+    margin-top: 20px;
+}
+.full-card{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.info{
+    padding-left: 10px;
+}
+.search-form{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background-color: rgb(20, 20, 166);
+    padding: 16px 0;
+}
+.form-input{
+    padding: 4px 0 4px 4px;
+    border-radius: 8px;
+    border-color: rgb(221, 218, 218);
+}
+.search-button{
+    border-radius: 8px;
+    border-color: rgb(221, 218, 218);
+}
+.load-more{
+    border-radius: 8px;
+    margin-top: 32px;
+    border-color: rgb(221, 218, 218);
+    width: 200px;
+    height: 48px;
+    background-color: green;
+    color: rgb(245, 236, 236);
+}
