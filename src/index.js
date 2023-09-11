@@ -1,10 +1,10 @@
-import Notiflix from 'notiflix';
+import Notiflix, { Notify } from 'notiflix';
 import { createGallery } from './markup.js';
-import {createPicture} from './create-pic.js'
+import { createPicture } from './create-pic.js';
 import './styles.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import {input, form, gallery, loadBtn} from './refs.js'
+import { input, form, gallery, loadBtn } from './refs.js';
 
 let page = 1;
 let searchQuery = '';
@@ -24,6 +24,7 @@ async function handleSubmit(e) {
   createPicture(searchQuery, page)
     .then(data => {
       const hits = data.hits;
+      const totalHits = data.totalHits
 
       gallery.innerHTML = '';
       if (hits.length === 0) {
@@ -33,6 +34,7 @@ async function handleSubmit(e) {
         );
         loadBtn.classList.add('is-hidden');
       } else {
+        Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
         gallery.insertAdjacentHTML('beforeend', createGallery(hits));
         lightbox = new SimpleLightbox('.gallery a', {});
         loadBtn.classList.remove('is-hidden');
@@ -58,10 +60,11 @@ async function loadProcess() {
 
       gallery.insertAdjacentHTML('beforeend', createGallery(searchResults));
       if (page === pageNumber) {
+        loadBtn.classList.remove('is-hidden');
         Notiflix.Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
-        loadBtn.removeEventListener('click', loadProcess);
+        // loadBtn.removeEventListener('click', loadProcess);
         loadBtn.classList.add('is-hidden');
       } else {
         lightbox.refresh();
